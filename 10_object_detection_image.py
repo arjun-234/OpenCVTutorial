@@ -29,7 +29,7 @@ while True:
     u_b = np.array([u_h, u_s, u_v])
 
     mask = cv2.inRange(hsv, l_b, u_b)
-
+    
     res = cv2.bitwise_and(frame, frame, mask=mask)
 
     cv2.imshow("frame", frame)

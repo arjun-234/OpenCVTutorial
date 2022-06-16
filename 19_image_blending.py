@@ -45,11 +45,12 @@ for apple_lap, orange_lap in zip(lp_apple, lp_orange):
     laplacian = np.hstack((apple_lap[:, 0:int(cols/2)], orange_lap[:, int(cols/2):]))
     apple_orange_pyramid.append(laplacian)
 
-# now reconstruct
+
 apple_orange_reconstruct = apple_orange_pyramid[0]
 for i in range(1, 6):
-    apple_orange_reconstruct = cv2.pyrUp(apple_orange_reconstruct)
+    apple_orange_reconstruct = cv2.pyrUp(apple_orange_reconstruct, dstsize = (apple_orange_pyramid[i].shape[1], apple_orange_pyramid[i].shape[0]))
     apple_orange_reconstruct = cv2.add(apple_orange_pyramid[i], apple_orange_reconstruct)
+
 
 cv2.imshow("apple", apple)
 cv2.imshow("orange", orange)
